@@ -9,20 +9,25 @@
   <svg {width} {height}>
     <g transform="translate({margin.left}, {margin.top})">
       <rect x=0 y=0 width={innerWidth} height={innerHeight} />
-      <circle cx=innerWidth cy=innerHeight r=20 transform="translate({innerWidth},{innerHeight})"/>
+      <circle cx={innerWidth} cy={innerHeight} r=20/>
     </g>
   </svg>
   
+  
+
   <style>
     svg {
       border: 1px solid black;
       border-radius: 5px;
     }
     rect {
-      fill: yellow
+      fill: yellow;
+      opacity: 1;
+      /* stroke: aqua; */
     }
     circle {
-      fill: steelblue
+      fill: skyblue;
+      opacity: 0.8;
     }
   </style>
   
