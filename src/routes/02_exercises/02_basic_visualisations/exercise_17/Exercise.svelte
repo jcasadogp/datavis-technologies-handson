@@ -19,16 +19,17 @@
 <style>
   circle {
       fill: steelblue;
-      fill-opacity: 0.5;
   }
 </style>
 
 <svg viewBox="0 0 {width} {height}">
   <g transform="translate({margin.left},{margin.top})">
-    {#each values as value}
+    <g transform="translate(0,{innerHeight / 2})">
+      {#each values as value}
       <circle cx={scale(value)} 
-              cy=10 
+              cy=0
               r=10 />
     {/each}
+  </g>
   </g>
 </svg>

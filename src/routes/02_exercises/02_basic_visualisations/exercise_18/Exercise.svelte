@@ -19,35 +19,29 @@
   const scale = scaleLog().base(10).domain([1, max(values)]).range([0, innerWidth]);
 
   function axisBuilder(handle){
-    // const xAxis = axisBottom(scale);
     let axisGen = axisBottom(scale)
-    let xAxis = select("g")
+    let xAxis = axisGen(select(handle))
   }
 
   </script>
 
 <svg viewBox="0 0 {width} {height}">
-  <g transform="translate({margin.left},{margin.top})" use:axisBuilder>
-  <!-- <g transform="translate({margin.left},{margin.top})"> -->
-    {#each values as value}
-      <circle cx={scale(value)} 
-              cy=10 
-              r=10 />
+  <g transform="translate({margin.left},{margin.top})">
+    <g transform="translate(0,{innerHeight / 2})" use:axisBuilder>
+      {#each values as value}
+      <circle cx={scale(value)} cy=0 r=10 />
     {/each}
+  </g>
   </g>
 </svg>
 
 <style>
   circle {
       fill: steelblue;
-      fill-opacity: 0.5;
   }
   circle:hover{
-    fill: green;
+    fill: red;
     fill-opacity: 1;
-  }
-  g {
-    fill: black
   }
 </style>
 
