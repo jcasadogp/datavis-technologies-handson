@@ -8,6 +8,8 @@
 
   import { scaleBand, scaleLinear } from 'd3-scale';
   import { min, max, extent} from "d3-array";
+  import { axisLeft, axisBottom } from 'd3-axis';
+  import { select } from 'd3-selection';
 
   // Dimensions
   const [height, width] = [400, 600];
@@ -17,20 +19,41 @@
 
   // Data
   export let datapoints = []; //Because of the export we can access this variable from outside. 
-  console.log('=======================================')
-  console.log('(2) Scatterplot script')
-  console.log('(2)', datapoints)
 
   // Scales
-  // const xScale = scaleLinear().domain([0, max(datapoints, d => d.income)]).range([0, innerWidth]);
-  // const yScale = scaleLinear().domain([0, max(datapoints, d => d.life_exp)]).range([innerHeight, 0]);
+  const xScale = scaleLinear().domain([0, max(datapoints, d => d.income)]).range([0, innerWidth]);
+  const yScale = scaleLinear().domain([0, max(datapoints, d => d.life_exp)]).range([innerHeight, 0]);
+
+  // Axis
+  function leftAxisBuilder(handle){
+    let axisGen = axisLeft(yScale)
+    let yAxis = axisGen(select(handle))
+  }
+
+  function bottomAxisBuilder(handle){
+    let axisGen = axisBottom(xScale)
+    let xAxis = axisGen(select(handle))
+  }
 </script>
 
 <svg viewBox="0 0 {width} {height}" style="max-width: {width}px">
   <g transform="translate({margin.left}, {margin.top})">
-    <!-- <circle cx={xScale(763)} cy={yScale(36.6)} r=10></circle> -->
-    <!-- {#each datapoints as datapoint,i}
-        <circle cx={+datapoint.income} cy={+datapoint.life_exp} r=10></circle>
-    {/each} -->
+    <rect></rect>
+    {#each datapoints as datapoint,i}
+        <circle cx={xScale(+datapoint.income)} cy={yScale(+datapoint.life_exp)} r=5></circle>
+    {/each}
+    <g use:leftAxisBuilder></g>
+    <g transform={`translate(0,${innerHeight})`} use:bottomAxisBuilder></g>
+    <text transform="translate({innerWidth / 2}, {innerHeight+35})" >Income</text>
   </g>
 </svg>
+
+<style>
+  circle{
+    fill: steelblue;
+    opacity: 0.8;
+  }
+  text{
+    text-anchor: middle;
+  }
+</style>
