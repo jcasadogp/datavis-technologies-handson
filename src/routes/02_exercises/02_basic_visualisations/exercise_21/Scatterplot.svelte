@@ -40,7 +40,7 @@
   <g transform="translate({margin.left}, {margin.top})">
     <rect></rect>
     {#each datapoints as datapoint,i}
-        <circle cx={xScale(+datapoint.income)} cy={yScale(+datapoint.life_exp)} r=5></circle>
+        <circle cx={xScale(+datapoint.income)} cy={yScale(+datapoint.life_exp)} r=7></circle>
     {/each}
     <g use:leftAxisBuilder></g>
     <g transform={`translate(0,${innerHeight})`} use:bottomAxisBuilder></g>
@@ -50,8 +50,8 @@
 
 <style>
   circle{
-    fill: steelblue;
-    opacity: 0.8;
+    fill: rgb(47, 158, 134);
+    opacity: 0.4;
   }
   text{
     text-anchor: middle;
