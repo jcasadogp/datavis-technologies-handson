@@ -18,8 +18,8 @@
 
   // Scales
   const xScale = scaleLog().domain([300, 150000]).range([0, innerWidth]);
-  const yScale = scaleLinear().domain([0, 90]).range([innerHeight, 0]);
-  const rScale = scaleLinear().range([5, 40]).domain([2000, 1400000000]);
+  const yScale = scaleLinear().domain([0, 90]).range([innerHeight, 0]); 
+  const rScale = scaleLinear().domain([2000, 1400000000]).range([5, 40]);
   const cScale = scaleOrdinal(schemeTableau10).domain(continents);
 
   // Axes

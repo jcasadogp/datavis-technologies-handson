@@ -38,7 +38,6 @@
 
 <svg viewBox="0 0 {width} {height}" style="max-width: {width}px">
   <g transform="translate({margin.left}, {margin.top})">
-    <rect></rect>
     {#each datapoints as datapoint,i}
         <circle cx={xScale(+datapoint.income)} cy={yScale(+datapoint.life_exp)} r=7></circle>
     {/each}
