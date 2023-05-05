@@ -6,6 +6,7 @@
   import Scatterplot from "./Scatterplot.svelte";
 
   export let index_exercise = 0;
+  export let selected_continents_exercise = ["europe", "asia", "americas", "africa"];
   
   // Load the data
   let data = null;
@@ -14,8 +15,7 @@
     data = await json("/data/gapminder.json");
     console.log(data)
 
-    // data_year = data[index_exercise]
-    // console.log(data_year)
+    console.log()
   });
 </script>
 
@@ -23,7 +23,7 @@
   <p>Loading the data, please wait...</p>
 {:else}
   <div>
-    <Scatterplot data={data[index_exercise]['countries']} />
-    <Controls bind:index_control={index_exercise} />
+    <Scatterplot data={data[index_exercise]['countries'].filter(d => selected_continents_exercise.includes(d.continent))} />
+    <Controls bind:index_control={index_exercise} bind:selected_continents={selected_continents_exercise}/>
   </div>
 {/if}
